@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'; // ES6
 
 
 
-const Blogs = ({handelBookmarks}) => {
+const Blogs = ({handelBookmarks,handelReadingTime}) => {
 
     const [blogs , setBlogs ] = useState([])
 
@@ -17,11 +17,11 @@ const Blogs = ({handelBookmarks}) => {
     },[])
     return (
         <div className='md:w-2/3'>
-            <h1>Blogs!!!</h1>
             {
                 blogs.map(blog => <Blog 
                     key={blog.id} 
                     blog = {blog} 
+                    handelReadingTime ={handelReadingTime}
                     handelBookmarks = {() => handelBookmarks(blog)} 
                     ></Blog>)
             }
@@ -31,6 +31,7 @@ const Blogs = ({handelBookmarks}) => {
 
 Blogs.propTypes = {
     handelBookmarks:PropTypes.func.isRequired,
+    handelReadingTime: PropTypes.func,
 };
 
 export default Blogs;

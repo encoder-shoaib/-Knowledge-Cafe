@@ -15,6 +15,19 @@ function App() {
     setBookmarks(newBookmarks)
   }
 
+  const [readingTime ,setReadingTime] = useState(0);
+
+  const handelReadingTime = (time ,id) =>{
+    console.log('add reading time soon' , time)
+    const netReadingTime = readingTime + time;
+    setReadingTime(netReadingTime)
+
+    // remove bookmarks
+
+    const remainingBookMrk = bookmarks.filter(bookMark => bookMark.id !== id);
+    setBookmarks(remainingBookMrk)
+  }
+
 
   return (
     <>
@@ -22,8 +35,16 @@ function App() {
     <Header></Header>
         
         <div className='md:flex'>
-          <Blogs handelBookmarks ={handelBookmarks} ></Blogs>
-          <Bookmarks bookmarks ={bookmarks}></Bookmarks>
+          <Blogs 
+          handelBookmarks ={handelBookmarks}
+          handelReadingTime ={handelReadingTime}
+           >
+           </Blogs>
+          <Bookmarks 
+           bookmarks ={bookmarks}
+           readingTime= {readingTime}
+           > 
+           </Bookmarks>
         </div>
     </div>
 
